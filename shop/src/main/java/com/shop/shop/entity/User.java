@@ -30,4 +30,11 @@ public class User {
 
     @Column(nullable = false)
     private String role = "user";
+
+    @Column(nullable = false)
+    private boolean verify = false;
+
+    public boolean getVerify(){
+        return verify;
+    }
 }
