@@ -64,4 +64,9 @@ class ShopApplicationTests {
 		}
 	}
 
+	@Test
+	void registerUser(){
+
+	}
+
 }
