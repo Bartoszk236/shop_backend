@@ -28,7 +28,6 @@ class ShopApplicationTests {
 		product.setName("Szklanka");
 		product.setDescription("Szklanka o pojemności 250ml. Kolor przezroczysty");
 		product.setPrice(new BigDecimal("5.99"));
-		product.setCategory("Zastawa");
 		productService.save(product);
 	}
 
@@ -40,7 +39,6 @@ class ShopApplicationTests {
 			System.out.println(product.getName());
 			System.out.println(product.getDescription());
 			System.out.println(product.getPrice());
-			System.out.println(product.getCategory());
 		});
 	}
 
@@ -58,7 +56,6 @@ class ShopApplicationTests {
 			System.out.println(product.getName());
 			System.out.println(product.getDescription());
 			System.out.println(product.getPrice());
-			System.out.println(product.getCategory());
 		} else {
 			System.out.println("Produkt nie istnieje");
 		}

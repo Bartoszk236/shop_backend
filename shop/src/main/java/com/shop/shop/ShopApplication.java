@@ -1,5 +1,6 @@
 package com.shop.shop;
 
+import com.shop.shop.repository.UserInformationRepository;
 import com.shop.shop.repository.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -14,9 +15,9 @@ public class ShopApplication {
 	}
 
 	@Bean
-	public CommandLineRunner clearDataBase(UserRepository userRepository){
+	public CommandLineRunner clearDataBase(UserInformationRepository userInformationRepository){
 		return args -> {
-			userRepository.deleteAll();
+			userInformationRepository.deleteAll();
 		};
 	}
 

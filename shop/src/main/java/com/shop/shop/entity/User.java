@@ -1,5 +1,6 @@
 package com.shop.shop.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Size;
@@ -37,4 +38,8 @@ public class User {
     public boolean getVerify(){
         return verify;
     }
+
+    @JsonIgnore
+    @OneToOne(mappedBy = "user", orphanRemoval = true)
+    private UserInformation userInformation;
 }
