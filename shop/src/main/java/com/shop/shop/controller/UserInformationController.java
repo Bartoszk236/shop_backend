@@ -32,29 +32,29 @@ public class UserInformationController {
     }
 
     @GetMapping("/me")
-    public ResponseEntity<UserInformation> getInformation(@AuthenticationPrincipal UserDetails userDetails){
+    public ResponseEntity<?> getInformation(@AuthenticationPrincipal UserDetails userDetails){
         User user = userService.findByEmail(userDetails.getUsername());
         if (user != null && user.getUserInformation() != null){
             UserInformation userInformation = userInformationService.getInformation(user.getEmail());
-            return ResponseEntity.ok(userInformation);
-        } else return ResponseEntity.notFound().build();
+            return ResponseEntity.status(200).body(userInformation);
+        } else return ResponseEntity.status(404).body("User not found");
     }
 
     @PutMapping("/update/{id}")
     public ResponseEntity<?> updateInformation(@PathVariable Long id, @RequestBody UserInformation userInformation,
                                                @AuthenticationPrincipal UserDetails userDetails) {
         if (userDetails == null) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Unauthorized");
+            return ResponseEntity.status(401).body("Unauthorized");
         }
 
         User user = userService.findByEmail(userDetails.getUsername());
         if (user == null) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("User not found");
+            return ResponseEntity.status(401).body("User not found");
         }
 
         UserInformation oldUserInformation = userInformationService.getInformationById(id);
         if (oldUserInformation == null) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User information not found");
+            return ResponseEntity.status(404).body("User information not found");
         }
 
         oldUserInformation.setFirstName(userInformation.getFirstName());
@@ -68,6 +68,6 @@ public class UserInformationController {
 
         userInformationService.save(oldUserInformation);
 
-        return ResponseEntity.ok(oldUserInformation);
+        return ResponseEntity.status(200).body(oldUserInformation);
     }
 }

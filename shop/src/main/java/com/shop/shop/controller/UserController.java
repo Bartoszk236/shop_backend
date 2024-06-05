@@ -41,7 +41,7 @@ public class UserController {
 
         emailService.sentEmail(user.getEmail(), "Registration Confirmation", message);
 
-        return ResponseEntity.ok("User registered successfully");
+        return ResponseEntity.status(200).body("User registered successfully");
     }
 
     @PostMapping("/login")
@@ -60,9 +60,9 @@ public class UserController {
         boolean isValid = userService.validateVerificationToken(token);
 
         if (isValid) {
-            return ResponseEntity.ok("User confirmed successfully");
+            return ResponseEntity.status(200).body("User confirmed successfully");
         } else {
-            return ResponseEntity.badRequest().body("Invalid token");
+            return ResponseEntity.status(400).body("Invalid token");
         }
     }
 }

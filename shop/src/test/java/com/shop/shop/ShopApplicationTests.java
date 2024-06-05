@@ -47,23 +47,4 @@ class ShopApplicationTests {
 		productService.deleteById(3L);
 	}
 
-	@Test
-	void getById(){
-		Optional<Product> productOptional = productService.findById(4L);
-
-		if(productOptional.isPresent()) {
-			Product product = productOptional.get();
-			System.out.println(product.getName());
-			System.out.println(product.getDescription());
-			System.out.println(product.getPrice());
-		} else {
-			System.out.println("Produkt nie istnieje");
-		}
-	}
-
-	@Test
-	void registerUser(){
-
-	}
-
 }

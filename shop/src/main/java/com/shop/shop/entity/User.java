@@ -42,4 +42,8 @@ public class User {
     @JsonIgnore
     @OneToOne(mappedBy = "user", orphanRemoval = true)
     private UserInformation userInformation;
+
+    @JsonIgnore
+    @OneToOne(mappedBy = "user", orphanRemoval = true)
+    private Cart cart;
 }

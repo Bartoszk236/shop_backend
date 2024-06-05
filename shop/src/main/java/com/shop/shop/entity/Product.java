@@ -1,5 +1,6 @@
 package com.shop.shop.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
@@ -26,4 +27,9 @@ public class Product {
 
     @Column(nullable = false)
     private BigDecimal price;
+
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "cart_id")
+    private CartItem cartItem;
 }
