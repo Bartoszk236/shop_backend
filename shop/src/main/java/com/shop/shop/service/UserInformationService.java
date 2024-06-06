@@ -28,4 +28,15 @@ public class UserInformationService {
         UserInformation userInformation = userInformationRepository.getById(id);
         return userInformation;
     }
+
+    public void updateUserInformation(UserInformation oldUserInformation, UserInformation newUserInformation){
+        oldUserInformation.setFirstName(newUserInformation.getFirstName());
+        oldUserInformation.setLastName(newUserInformation.getLastName());
+        oldUserInformation.setPhoneNumber(newUserInformation.getPhoneNumber());
+        oldUserInformation.setStreet(newUserInformation.getStreet());
+        oldUserInformation.setBuildingNumber(newUserInformation.getBuildingNumber());
+        oldUserInformation.setLocalNumber(newUserInformation.getLocalNumber());
+        oldUserInformation.setCity(newUserInformation.getCity());
+        oldUserInformation.setZipCode(newUserInformation.getZipCode());
+    }
 }

@@ -30,4 +30,12 @@ public class ProductService {
     public void deleteById(Long id){
         productRepository.deleteById(id);
     }
+
+    public void updateProductById(Product updateProduct, Long productId){
+        Product oldProduct = productRepository.getReferenceById(productId);
+        oldProduct.setName(updateProduct.getName());
+        oldProduct.setDescription(updateProduct.getDescription());
+        oldProduct.setPrice(updateProduct.getPrice());
+        save(oldProduct);
+    }
 }

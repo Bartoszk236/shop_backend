@@ -41,7 +41,7 @@ public class UserInformationController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<?> updateInformation(@PathVariable Long id, @RequestBody UserInformation userInformation,
+    public ResponseEntity<?> updateUserInformation(@PathVariable Long id, @RequestBody UserInformation userInformation,
                                                @AuthenticationPrincipal UserDetails userDetails) {
         if (userDetails == null) {
             return ResponseEntity.status(401).body("Unauthorized");
@@ -57,15 +57,7 @@ public class UserInformationController {
             return ResponseEntity.status(404).body("User information not found");
         }
 
-        oldUserInformation.setFirstName(userInformation.getFirstName());
-        oldUserInformation.setLastName(userInformation.getLastName());
-        oldUserInformation.setPhoneNumber(userInformation.getPhoneNumber());
-        oldUserInformation.setStreet(userInformation.getStreet());
-        oldUserInformation.setBuildingNumber(userInformation.getBuildingNumber());
-        oldUserInformation.setLocalNumber(userInformation.getLocalNumber());
-        oldUserInformation.setCity(userInformation.getCity());
-        oldUserInformation.setZipCode(userInformation.getZipCode());
-
+        userInformationService.updateUserInformation(oldUserInformation, userInformation);
         userInformationService.save(oldUserInformation);
 
         return ResponseEntity.status(200).body(oldUserInformation);
